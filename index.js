@@ -7,15 +7,15 @@ import { createSpinner } from "nanospinner";
 
 let clientName;
 
+const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
+
 async function welcome() {
   const title = chalkAnimation.rainbow(
     "Hey, Yash here... Welcome to my terminal Portfolio \n"
   );
 
-  function stop() {
-    title.stop();
-  }
-  setTimeout(stop, 2000);
+  await sleep();
+  title.stop();
 }
 
 async function askName() {
@@ -33,36 +33,51 @@ async function askMenu() {
     name: "menu",
     type: "list",
     message: "whats you want to know about me ?",
-    choices: ["About", "projects", "socials", "contact"],
+    choices: ["About", "projects", "socials", "contact", "exit"],
   });
 
   return handleMenu(details.menu);
   //   console.log(details.menu);
 }
 
-async function handleMenu(combo) {
-  const spinner = createSpinner("getting Details...");
-  console.log(typeof combo);
-  //   await sleep();
+async function handleMenu(input) {
+  const spinner = createSpinner("getting Details...").start();
+  // console.log(typeof input);
+  // console.log(input);
+  await sleep();
 
-  if ("About") {
+  if (input == "About") {
     spinner.success({
       text: `Heres the Details ${clientName}. That's  About `,
     });
-  } else if ("projects") {
+    const reply = await inquirer.prompt({
+      name: "replyyy",
+      type: "input",
+      message: "wanted to know more ? (yup/nope)",
+    });
+    if (reply.replyyy == "yup") {
+      askMenu();
+    } else {
+      spinner.error({ text: `you killed me Man!` });
+      process.exit(1);
+    }
+  } else if (input == "projects") {
     spinner.success({
       text: `Heres the Details ${clientName}. That's  projects `,
     });
-  } else if ("socials") {
+    askMenu();
+  } else if (input == "socials") {
     spinner.success({
       text: `Heres the Details ${clientName}. That's  socials `,
     });
-  } else if ("contact") {
+    askMenu();
+  } else if (input == "contact") {
     spinner.success({
       text: `Heres the Details ${clientName}. That's  contact `,
     });
+    askMenu();
   } else {
-    spinner.error({ text: `Heres the Details ${clientName}. ` });
+    spinner.error({ text: `you killed me Man!` });
     process.exit(1);
   }
 }
