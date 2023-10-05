@@ -1,6 +1,6 @@
 {
   "name": "yash-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yash's cli portfolio",
   "main": "index.js",
   "type": "module",
