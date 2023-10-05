@@ -1,16 +1,18 @@
 {
-  "name": "ter-prot",
+  "name": "yash-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "Yash's cli portfolio",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Yash Raj",
   "license": "ISC",
-  "bin": "./index.js",
+  "bin": {
+    "ter-prot": "index.js"
+  },
   "dependencies": {
     "chalk": "^5.3.0",
     "chalk-animation": "^2.0.3",
@@ -18,5 +20,14 @@
     "gradient-string": "^2.0.2",
     "inquirer": "^9.2.11",
     "nanospinner": "^1.1.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yash-raj10/cli-portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yash-raj10/cli-portfolio/issues"
+  },
+  "homepage": "https://github.com/yash-raj10/cli-portfolio#readme"
 }
